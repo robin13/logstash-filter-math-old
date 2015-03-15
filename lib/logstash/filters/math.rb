@@ -47,8 +47,8 @@ class LogStash::Filters::Math < LogStash::Filters::Base
       # Check that all the fields exist and are numeric
       next unless event.include?(calculation[1])
       next unless event.include?(calculation[2])
-      next unless event[calculation[1]].is_a? Float or event[calculation[2]].is_a? Integer
-      next unless event[calculation[1]].is_a? Float or event[calculation[2]].is_a? Integer
+      next unless event[calculation[1]] == 0 or event[calculation[1]].is_a? Float or event[calculation[1]].is_a? Integer
+      next unless event[calculation[2]] == 0 or event[calculation[2]].is_a? Float or event[calculation[2]].is_a? Integer
       case calculation[0]
       when "add"
         event[calculation[3]] = event[calculation[1]] + event[calculation[2]]
