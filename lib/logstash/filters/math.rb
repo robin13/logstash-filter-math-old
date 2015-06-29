@@ -21,7 +21,6 @@ require "logstash/namespace"
 
 class LogStash::Filters::Math < LogStash::Filters::Base
   config_name "math"
-  milestone 1
 
   # fields - second subtracted from the first
   config :calculate, :validate => :array, :required => true

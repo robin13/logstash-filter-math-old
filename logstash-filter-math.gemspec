@@ -1,5 +1,4 @@
 Gem::Specification.new do |s|
-
   s.name            = 'logstash-filter-math'
   s.version         = '0.1'
   s.licenses        = ['Apache License (2.0)']
