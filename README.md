@@ -1,3 +1,8 @@
+# logstash-filter-math
+
+This plugin provides the ability to do various simple math operations (addition, subtraction, 
+multiplication and division) on document fields.
+
 # Logstash Plugin
 
 This is a plugin for [Logstash](https://github.com/elastic/logstash).
