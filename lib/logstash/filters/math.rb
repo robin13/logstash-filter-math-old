@@ -46,19 +46,19 @@ class LogStash::Filters::Math < LogStash::Filters::Base
       # Check that all the fields exist and are numeric
       next unless event.include?(calculation[1])
       next unless event.include?(calculation[2])
-      next unless event[calculation[1]] == 0 or event[calculation[1]].is_a? Float or event[calculation[1]].is_a? Integer
-      next unless event[calculation[2]] == 0 or event[calculation[2]].is_a? Float or event[calculation[2]].is_a? Integer
+      next unless event.get(calculation[1]) == 0 or event.get(calculation[1]).is_a? Float or event.get(calculation[1]).is_a? Integer
+      next unless event.get(calculation[2]) == 0 or event.get(calculation[2]).is_a? Float or event.get(calculation[2]).is_a? Integer
       case calculation[0]
       when "add"
-        event[calculation[3]] = event[calculation[1]] + event[calculation[2]]
+        event.set( calculation[3], event.get(calculation[1]) + event.get(calculation[2]) )
       when "sub"
-        event[calculation[3]] = event[calculation[1]] - event[calculation[2]]
+        event.set(calculation[3], event.get(calculation[1]) - event.get(calculation[2]) )
       when "div"
         # Avoid division by zero
-        next if event[calculation[2]] == 0
-        event[calculation[3]] = event[calculation[1]].to_f / event[calculation[2]]
+        next if event.get( calculation[2] ) == 0
+        event.set( calculation[3], event.get( calculation[1]).to_f / event.get(calculation[2]) )
       when "mpx"
-        event[calculation[3]] = event[calculation[1]] * event[calculation[2]]
+        event.set( calculation[3], event.get( calculation[1]) * event.get( calculation[2] ) )
       end # case calculation[0]
     end # for each calculate
     filter_matched(event)
